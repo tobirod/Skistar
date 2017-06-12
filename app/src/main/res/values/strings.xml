@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Skistar</string>
+    <string name="menu_button_allRuns">Browse all runs</string>
 </resources>
