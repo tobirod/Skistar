@@ -4,46 +4,52 @@ import com.google.gson.annotations.SerializedName;
 
 public class Run {
 
-    @SerializedName("swipeTime")
-    private String date;
-
-    @SerializedName("liftName")
-    private String lift;
-
-    @SerializedName("name")
-    private String location;
-
+    private String swipeTime;
+    private String liftName;
+    private String id;
+    private String name;
     private String height;
+    private String swipeDate;
 
-    public Run(String date, String lift, String location, String height) {
-        this.date = date;
-        this.lift = lift;
-        this.location = location;
+    public Run(String swipeTime, String liftName, String id, String name, String height, String swipeDate) {
+        this.swipeTime = swipeTime;
+        this.liftName = liftName;
+        this.id = id;
+        this.name = name;
         this.height = height;
+        this.swipeDate = swipeDate;
     }
 
-    public String getDate() {
-        return date;
+    public String getSwipeTime() {
+        return swipeTime;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setSwipeTime(String swipeTime) {
+        this.swipeTime = swipeTime;
     }
 
-    public String getLift() {
-        return lift;
+    public String getLiftName() {
+        return liftName;
     }
 
-    public void setLift(String lift) {
-        this.lift = lift;
+    public void setLiftName(String liftName) {
+        this.liftName = liftName;
     }
 
-    public String getLocation() {
-        return location;
+    public String getId() {
+        return id;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getHeight() {
@@ -52,6 +58,14 @@ public class Run {
 
     public void setHeight(String height) {
         this.height = height;
+    }
+
+    public String getSwipeDate() {
+        return swipeDate;
+    }
+
+    public void setSwipeDate(String swipeDate) {
+        this.swipeDate = swipeDate;
     }
 
 }

@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import java.util.List;
+import java.util.ArrayList;
 
 import newton.android.skistar.R;
 
 public class ListAdapter extends ArrayAdapter<Run> {
 
-    private List<Run> dataSet;
+    private ArrayList<Run> dataSet;
 
     // View lookup cache
     private static class ViewHolder {
@@ -23,7 +23,7 @@ public class ListAdapter extends ArrayAdapter<Run> {
         TextView height;
     }
 
-    public ListAdapter(List<Run> data, Context context) {
+    public ListAdapter(ArrayList<Run> data, Context context) {
         super(context, R.layout.list_item, data);
         this.dataSet = data;
     }
@@ -51,9 +51,9 @@ public class ListAdapter extends ArrayAdapter<Run> {
         }
 
         assert run != null;
-        viewHolder.date.setText(run.getDate());
-        viewHolder.lift.setText(run.getLift());
-        viewHolder.location.setText(run.getLocation());
+        viewHolder.date.setText(run.getSwipeTime());
+        viewHolder.lift.setText(run.getLiftName());
+        viewHolder.location.setText(run.getName());
         viewHolder.height.setText(run.getHeight());
 
         // Return the completed view to render on screen
