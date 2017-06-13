@@ -1,10 +1,18 @@
 package newton.android.skistar.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Run {
 
+    @SerializedName("swipeTime")
     private String date;
+
+    @SerializedName("liftName")
     private String lift;
+
+    @SerializedName("name")
     private String location;
+
     private String height;
 
     public Run(String date, String lift, String location, String height) {

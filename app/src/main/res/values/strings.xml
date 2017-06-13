@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Skistar</string>
     <string name="menu_button_allRuns">Browse all runs</string>
+
+    <string name="date_header">Date</string>
+    <string name="lift_header">Lift</string>
+    <string name="location_header">Location</string>
+    <string name="height_header">Height</string>
 </resources>

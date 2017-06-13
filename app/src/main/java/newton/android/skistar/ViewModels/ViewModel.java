@@ -4,9 +4,6 @@ import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 
-import newton.android.skistar.MainActivity;
-import newton.android.skistar.ListActivity;
-
 public class ViewModel extends BaseObservable {
 
     private Context context;
@@ -22,22 +19,22 @@ public class ViewModel extends BaseObservable {
 
     public void setDate(String date){
         this.date = date;
-        notifyPropertyChanged(newton.android.BR.date);
+        notifyPropertyChanged(newton.android.skistar.BR.date);
     }
 
     public void setLift(String lift){
         this.lift = lift;
-        notifyPropertyChanged(newton.android.BR.lift);
+        notifyPropertyChanged(newton.android.skistar.BR.lift);
     }
 
     public void setLocation(String location){
         this.location = location;
-        notifyPropertyChanged(newton.android.BR.location);
+        notifyPropertyChanged(newton.android.skistar.BR.location);
     }
 
     public void setHeight(String height){
         this.height = height;
-        notifyPropertyChanged(newton.android.BR.height);
+        notifyPropertyChanged(newton.android.skistar.BR.height);
     }
 
     @Bindable
