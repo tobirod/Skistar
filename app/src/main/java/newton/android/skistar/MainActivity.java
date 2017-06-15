@@ -2,6 +2,7 @@ package newton.android.skistar;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TabHost;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import newton.android.skistar.Json.GetJson;
 import newton.android.skistar.ViewModels.ViewModel;
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         binding.setViewModel(viewmodel);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setSubtitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
         TabHost tabHost = (TabHost)findViewById(R.id.tabHost);
@@ -52,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         tabHost.addTab(spec);
 
         if (GetJson.runs == null) {
+            GetJson.runs = new ArrayList<>();
             getJson.loadJson();
         }
     }

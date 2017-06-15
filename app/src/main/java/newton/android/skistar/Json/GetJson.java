@@ -1,7 +1,6 @@
 package newton.android.skistar.Json;
 
 import android.content.Context;
-import android.text.LoginFilter;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -23,7 +22,7 @@ import newton.android.skistar.Models.Run;
 public class GetJson {
 
     private static final String ENDPOINT = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=11";
-    public static ArrayList<Run> runs = new ArrayList<>();
+    public static ArrayList<Run> runs;
     private Context context;
 
     public GetJson(Context context){
@@ -36,8 +35,6 @@ public class GetJson {
 
         StringRequest request = new StringRequest(Request.Method.GET, ENDPOINT, onPostsLoaded, onPostsError);
         requestQueue.add(request);
-
-        Log.i("Test", "LoadJson");
     }
 
     private final Response.Listener<String> onPostsLoaded = new Response.Listener<String>() {
@@ -45,8 +42,6 @@ public class GetJson {
         public void onResponse(String response) {
 
             JSONObject jsonObject;
-
-            Log.i("Test", "Response");
 
             try {
                 jsonObject = new JSONObject(response);
@@ -71,9 +66,6 @@ public class GetJson {
             }
 
             if (ListActivity.adapter != null) {
-                Run testrun = new Run("2018-05-13T12:51:41", "123", "123", "123", "123", "123");
-
-                runs.add(testrun);
 
                 ListActivity.adapter.notifyDataSetChanged();
             }

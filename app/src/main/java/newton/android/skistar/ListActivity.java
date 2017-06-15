@@ -1,10 +1,10 @@
 package newton.android.skistar;
 
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +33,8 @@ public class ListActivity extends AppCompatActivity {
         binding.setViewModel(viewmodel);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.list_toolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setSubtitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
         listView = (ListView) findViewById(R.id.listView);
@@ -72,18 +74,10 @@ public class ListActivity extends AppCompatActivity {
 
         adapter = new ListAdapter(GetJson.runs, getApplicationContext());
         listView.setAdapter(adapter);
-
-        Log.i("Test", "Populate");
-
-        adapter.notifyDataSetChanged();
     }
 
     public void refreshActionButton() {
         getJson.loadJson();
-
-        adapter.notifyDataSetChanged();
-
-        Log.i("Test", "Refresh");
     }
 
     private void toastMessage(String message) {
