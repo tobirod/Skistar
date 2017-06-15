@@ -1,7 +1,5 @@
 package newton.android.skistar.Models;
 
-import com.google.gson.annotations.SerializedName;
-
 public class Run {
 
     private String swipeTime;

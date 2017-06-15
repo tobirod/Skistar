@@ -8,40 +8,52 @@
         android:id="@+id/date_listItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="170"
+        android:padding="5dp"
+        android:layout_weight="100"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffffff"
         android:text="@string/date_header"
         android:gravity="start|center_vertical"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/lift_listItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="150"
+        android:padding="5dp"
+        android:layout_weight="100"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffffff"
         android:text="@string/lift_header"
         android:gravity="start|center_vertical"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/location_listItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="150"
+        android:padding="5dp"
+        android:layout_weight="130"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffffff"
         android:text="@string/location_header"
         android:gravity="start|center_vertical"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/height_listItem"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="150"
+        android:padding="5dp"
+        android:layout_weight="130"
+        android:background="@color/colorPrimary"
+        android:textColor="#ffffff"
         android:text="@string/height_header"
         android:gravity="start|center_vertical"
-        android:textSize="16sp"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
 </LinearLayout>
