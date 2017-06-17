@@ -12,7 +12,7 @@
         android:layout_weight="100"
         android:background="@color/colorPrimary"
         android:textColor="#ffffff"
-        android:text="@string/date_header"
+        android:text="@string/listview_header_date"
         android:gravity="start|center_vertical"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -25,7 +25,7 @@
         android:layout_weight="100"
         android:background="@color/colorPrimary"
         android:textColor="#ffffff"
-        android:text="@string/lift_header"
+        android:text="@string/listview_header_lift"
         android:gravity="start|center_vertical"
         android:textSize="14sp"
         android:textStyle="bold" />
@@ -38,7 +38,7 @@
         android:layout_weight="130"
         android:background="@color/colorPrimary"
         android:textColor="#ffffff"
-        android:text="@string/location_header"
+        android:text="@string/listview_header_location"
         android:gravity="start|center_vertical"
         android:textSize="13sp"
         android:textStyle="bold" />
@@ -51,7 +51,7 @@
         android:layout_weight="130"
         android:background="@color/colorPrimary"
         android:textColor="#ffffff"
-        android:text="@string/height_header"
+        android:text="@string/listview_header_height"
         android:gravity="start|center_vertical"
         android:textSize="13sp"
         android:textStyle="bold" />

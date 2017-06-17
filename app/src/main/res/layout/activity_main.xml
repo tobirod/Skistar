@@ -37,13 +37,11 @@
         app:layout_constraintTop_toBottomOf="@+id/main_toolbar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/tabHost"
-        android:text="@string/statistics_title"
+        android:text="@string/statistics_header"
         android:gravity="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:padding="10dp"
-        tools:layout_editor_absoluteY="25dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:padding="10dp" />
 
     <TabHost
         android:id="@+id/tabHost"
@@ -81,11 +79,65 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/button"
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Button1" />
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/statistics_header_today_runs"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:background="@color/colorPrimary"
+                            android:textColor="#ffffff"
+                            android:textSize="25sp"
+                            android:text="@string/statistics_header_today_runs" />
+
+                        <TextView
+                            android:id="@+id/statistics_today_runs"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:textColor="@color/colorPrimary"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:text="0" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/statistics_header_today_height"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:background="@color/colorPrimary"
+                            android:layout_weight="1"
+                            android:textColor="#ffffff"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:text="@string/statistics_header_today_height" />
+
+                        <TextView
+                            android:id="@+id/statistics_today_height"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="25sp"
+                            android:text="0m" />
+
+                    </TableRow>
 
                 </LinearLayout>
 
@@ -95,11 +147,66 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/button2"
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Button2" />
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/statistics_header_week_runs"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:background="@color/colorPrimary"
+                            android:textColor="#ffffff"
+                            android:textSize="25sp"
+                            android:text="@string/statistics_header_week_runs" />
+
+                        <TextView
+                            android:id="@+id/statistics_week_runs"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="25sp"
+                            android:text="0" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/statistics_header_week_height"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:background="@color/colorPrimary"
+                            android:textColor="#ffffff"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:text="@string/statistics_header_week_height" />
+
+                        <TextView
+                            android:id="@+id/statistics_week_height"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:text="0m" />
+
+                    </TableRow>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -108,12 +215,68 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/button3"
+                    <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Button3" />
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/statistics_header_season_runs"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:background="@color/colorPrimary"
+                            android:textColor="#ffffff"
+                            android:textSize="25sp"
+                            android:text="@string/statistics_header_season_runs" />
+
+                        <TextView
+                            android:id="@+id/statistics_season_runs"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:text="0" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/statistics_header_season_height"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:background="@color/colorPrimary"
+                            android:textColor="#ffffff"
+                            android:textSize="25sp"
+                            android:text="@string/statistics_header_season_height" />
+
+                        <TextView
+                            android:id="@+id/statistics_season_height"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_weight="1"
+                            android:textColor="@color/colorPrimary"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:text="0m" />
+
+                    </TableRow>
+
                 </LinearLayout>
+
             </FrameLayout>
         </LinearLayout>
     </TabHost>
@@ -127,7 +290,7 @@
         android:layout_marginRight="8dp"
         android:onClick="allRunsButtonClick"
         android:padding="20dp"
-        android:text="@string/menu_button_allRuns"
+        android:text="@string/menu_button_all_runs"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,6 +20,13 @@ import newton.android.skistar.ViewModels.ViewModel;
 import newton.android.skistar.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+
+    TextView statistics_day_run;
+    TextView statistics_day_height;
+    TextView statistics_week_run;
+    TextView statistics_week_height;
+    TextView statistics_season_run;
+    TextView statistics_season_height;
 
     GetJson getJson = new GetJson(this);
 
@@ -44,11 +52,17 @@ public class MainActivity extends AppCompatActivity {
         spec.setIndicator("Today");
         tabHost.addTab(spec);
 
+        statistics_day_run = (TextView) findViewById(R.id.statistics_today_runs);
+        statistics_day_height = (TextView) findViewById(R.id.statistics_today_height);
+
         //Tab 2
         spec = tabHost.newTabSpec("Week");
         spec.setContent(R.id.statistics_week);
         spec.setIndicator("This week");
         tabHost.addTab(spec);
+
+        statistics_week_run = (TextView) findViewById(R.id.statistics_week_runs);
+        statistics_week_height = (TextView) findViewById(R.id.statistics_week_height);
 
         //Tab 3
         spec = tabHost.newTabSpec("Season");
@@ -56,10 +70,18 @@ public class MainActivity extends AppCompatActivity {
         spec.setIndicator("This season");
         tabHost.addTab(spec);
 
+        statistics_season_run = (TextView) findViewById(R.id.statistics_season_runs);
+        statistics_season_height = (TextView) findViewById(R.id.statistics_season_height);
+
         if (GetJson.runs == null) {
             GetJson.runs = new ArrayList<>();
+            GetJson.runsToday = new ArrayList<>();
+            GetJson.runsWeek = new ArrayList<>();
+            GetJson.runsSeason = new ArrayList<>();
             getJson.loadJson();
         }
+
+        setStatistics();
     }
 
     @Override
@@ -72,11 +94,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                toastMessage("Refresh");
+                setStatistics();
                 return true;
 
             case R.id.action_settings:
-                toastMessage("Settings");
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                MainActivity.this.startActivity(intent);
                 return true;
 
             default:
@@ -88,6 +111,19 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(MainActivity.this, ListActivity.class);
         MainActivity.this.startActivity(intent);
+    }
+
+    public void setStatistics() {
+
+        statistics_day_run.setText(getJson.numberRunsToday);
+        statistics_day_height.setText(getJson.heightDroppedToday);
+
+        statistics_week_run.setText(getJson.numberRunsWeek);
+        statistics_week_height.setText(getJson.heightDroppedWeek);
+
+        statistics_season_run.setText(getJson.numberRunsSeason);
+        statistics_season_height.setText(getJson.heightDroppedSeason);
+
     }
 
     private void toastMessage(String message) {
