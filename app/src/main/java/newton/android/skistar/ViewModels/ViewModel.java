@@ -15,8 +15,21 @@ public class ViewModel extends BaseObservable {
     private String height;
     private String swipeDate;
 
+    private String skierId;
+    private String seasonId;
+
     public ViewModel(Context context){
         this.context = context;
+    }
+
+    public void setSkierId (String skierId) {
+        this.skierId = skierId;
+        notifyPropertyChanged(newton.android.skistar.BR.skierId);
+    }
+
+    public void setSeasonId (String seasonId) {
+        this.seasonId = seasonId;
+        notifyPropertyChanged(newton.android.skistar.BR.seasonId);
     }
 
     public void setSwipeTime(String swipeTime){
@@ -49,6 +62,14 @@ public class ViewModel extends BaseObservable {
         notifyPropertyChanged(newton.android.skistar.BR.swipeDate);
     }
 
+    @Bindable
+    public String getSkierId() {
+        return skierId;
+    }
+    @Bindable
+    public String getSeasonId() {
+        return seasonId;
+    }
     @Bindable
     public String getSwipeTime() {
         return swipeTime;

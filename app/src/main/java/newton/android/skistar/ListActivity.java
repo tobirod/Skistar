@@ -1,5 +1,6 @@
 package newton.android.skistar;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import newton.android.skistar.Json.GetJson;
 import newton.android.skistar.Models.ListAdapter;
@@ -58,11 +58,16 @@ public class ListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                refreshActionButton();
+                try {
+                    refreshActionButton();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 return true;
 
             case R.id.action_settings:
-                toastMessage("Settings");
+                Intent intent = new Intent(ListActivity.this, SettingsActivity.class);
+                ListActivity.this.startActivity(intent);
                 return true;
 
             default:
@@ -76,11 +81,9 @@ public class ListActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    public void refreshActionButton() {
+    public void refreshActionButton() throws InterruptedException {
         getJson.loadJson();
-    }
 
-    private void toastMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        populateListView();
     }
 }

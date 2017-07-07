@@ -1,8 +1,12 @@
 package newton.android.skistar.Json;
 
+import android.app.NotificationManager;
 import android.content.Context;
-import android.text.LoginFilter;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -25,30 +29,58 @@ import java.util.Locale;
 
 import newton.android.skistar.ListActivity;
 import newton.android.skistar.Models.Run;
+import newton.android.skistar.R;
+import newton.android.skistar.SettingsActivity;
 
 public class GetJson {
 
-    private static final String ENDPOINT = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=3206&seasonId=11";
     public static ArrayList<Run> runs;
     public static ArrayList<Run> runsToday;
     public static ArrayList<Run> runsWeek;
     public static ArrayList<Run> runsSeason;
     private Context context;
+    private String json = "";
 
-    public String numberRunsToday;
-    public String heightDroppedToday;
+    private SharedPreferences sharedPreferences;
 
-    public String numberRunsWeek;
-    public String heightDroppedWeek;
+    public static boolean viableId;
 
-    public String numberRunsSeason;
-    public String heightDroppedSeason;
+    public static String numberRunsToday;
+    public static String heightDroppedToday;
+    public int checkNewData = 0;
+
+    public static String numberRunsWeek;
+    public static String heightDroppedWeek;
+
+    public static String numberRunsSeason;
+    public static String heightDroppedSeason;
+
+    String userSkierId;
+    String userSeasonId;
+
+    private String ENDPOINT = "";
 
     public GetJson(Context context){
         this.context = context;
     }
 
+    public void setENDPOINT() {
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        if (sharedPreferences.contains("skierId") && sharedPreferences.contains("seasonId")) {
+            userSkierId = sharedPreferences.getString("skierId", "");
+            userSeasonId = sharedPreferences.getString("seasonId", "");
+
+            ENDPOINT = "https://www.skistar.com/myskistar/api/v2/views/statisticspage.json?entityId=" + userSkierId + "&seasonId=" + userSeasonId;
+
+            Log.i("Endpoint", ENDPOINT);
+        }
+    }
+
     public void loadJson() {
+
+        setENDPOINT();
 
         RequestQueue requestQueue = Volley.newRequestQueue(context);
 
@@ -60,7 +92,13 @@ public class GetJson {
         @Override
         public void onResponse(String response) {
 
+            viableId = true;
+
             JSONObject jsonObject;
+
+            if (!response.contentEquals(json)) {
+
+                json = response;
 
             try {
                 jsonObject = new JSONObject(response);
@@ -93,17 +131,31 @@ public class GetJson {
             if (ListActivity.adapter != null) {
                 ListActivity.adapter.notifyDataSetChanged();
             }
+
+            } else {
+                Log.i("ParseJSON", "No changes to JSON.");
+                clearSharedPrefs();
+            }
+
         }
     };
 
     private final Response.ErrorListener onPostsError = new Response.ErrorListener() {
         @Override
         public void onErrorResponse(VolleyError error) {
+            viableId = false;
             Log.e("ParseJSON", error.toString());
+            toastMessage("SkierID and/or SeasonID invalid. Please try again.");
+
+            clearSharedPrefs();
         }
     };
 
-    public void parseJson() throws ParseException {
+    private void parseJson() throws ParseException {
+
+        runsToday.clear();
+        runsWeek.clear();
+        runsSeason.clear();
 
         Calendar currentCalendar = Calendar.getInstance();
 
@@ -115,17 +167,17 @@ public class GetJson {
         Date dateSeasonStart = timeFormat.parse(seasonStart);
         Date dateSeasonEnd = timeFormat.parse(seasonEnd);
 
-        Run testrun1 = new Run("2017-06-16T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Fre, 16 Jun");
-        Run testrun2 = new Run("2017-06-16T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Fre, 16 Jun");
-        Run testrun3 = new Run("2017-06-16T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Fre, 16 Jun");
+        Run testrun1 = new Run("2017-07-04T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Mån, 4 Jul");
+        Run testrun2 = new Run("2017-07-04T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Mån, 4 Jul");
+        Run testrun3 = new Run("2017-07-04T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Mån, 4 Jul");
 
-        Run testrun4 = new Run("2017-06-15T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Tor, 15 Jun");
-        Run testrun5 = new Run("2017-06-15T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Tor, 15 Jun");
-        Run testrun6 = new Run("2017-06-15T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Tor, 15 Jun");
+        Run testrun4 = new Run("2017-07-04T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Mån, 4 Jul");
+        Run testrun5 = new Run("2017-07-04T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Mån, 4 Jul");
+        Run testrun6 = new Run("2017-07-04T12:52:01", "F7 Stormyra", "5", "Trysil", "125", "Mån, 4 Jul");
 
-        Run testrun7 = new Run("2017-06-17T09:52:01", "F7 Stormyra", "5", "Trysil", "125", "Lör, 17 Jun");
-        Run testrun8 = new Run("2017-06-17T09:52:01", "F7 Stormyra", "5", "Trysil", "125", "Lör, 17 Jun");
-        Run testrun9 = new Run("2017-06-17T09:52:01", "F7 Stormyra", "5", "Trysil", "125", "Lör, 17 Jun");
+        Run testrun7 = new Run("2017-07-07T08:52:01", "F7 Stormyra", "5", "Trysil", "125", "Fre, 7 Jul");
+        Run testrun8 = new Run("2017-07-07T08:52:01", "F7 Stormyra", "5", "Trysil", "125", "Fre, 7 Jul");
+        Run testrun9 = new Run("2017-07-07T08:52:01", "F7 Stormyra", "5", "Trysil", "125", "Fre, 7 Jul");
 
         runs.add(testrun1);
         runs.add(testrun2);
@@ -196,17 +248,41 @@ public class GetJson {
 
                 }
             }
+
+            setStatistics();
+
+            if (checkNewData == 0) {
+                checkNewData = runsToday.size();
+            }
+
         }
 
-        setStatistics();
+        if (SettingsActivity.autoUpdate && runsToday.size() > 0) {
+
+            if (runsToday.size() > checkNewData) {
+
+                checkNewData = runsToday.size();
+
+                NotificationCompat.Builder mBuilder =
+                        new NotificationCompat.Builder(context)
+                                .setSmallIcon(R.drawable.ic_notification_refresh)
+                                .setContentTitle("New run:")
+                                .setContentText(runsToday.get(0).getLiftName() + ": " + runsToday.get(0).getHeight() + "m")
+                                .setAutoCancel(true);
+
+                NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                // mId allows you to update the notification later on.
+                mNotificationManager.notify(100, mBuilder.build());
+
+            }
+        }
 
         Log.i("runsToday", "have " + runsToday.size() + "posts.");
         Log.i("runsWeek", "have " + runsWeek.size() + "posts.");
         Log.i("runsSeason", "have " + runsSeason.size() + "posts.");
-
     }
 
-    public void setStatistics() {
+    private void setStatistics() {
 
         int runsTodayBuffer = 0;
         int heightTodayBuffer = 0;
@@ -261,5 +337,24 @@ public class GetJson {
 
         numberRunsSeason = String.valueOf(runsSeasonBuffer);
         heightDroppedSeason = String.valueOf(heightSeasonBuffer) + "m";
+    }
+
+    private void toastMessage(String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void clearSharedPrefs() {
+
+        if (sharedPreferences.getString("skierID", "").length() > 0 && sharedPreferences.getString("seasonId", "").length() > 0) {
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.remove("skierId");
+            editor.remove("seasonId");
+            editor.commit();
+
+        }
+
+
     }
 }
